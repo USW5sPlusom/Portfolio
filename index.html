@@ -151,7 +151,15 @@
             text-align: right;
         }
 
+        /* Линия после Telegram (3-й элемент) */
         .contact-list a:nth-child(3) {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Линия после резюме (4-й элемент) */
+        .contact-list a:nth-child(4) {
             margin-bottom: 12px;
             padding-bottom: 12px;
             border-bottom: 1px solid var(--border);
@@ -257,6 +265,9 @@
             border: 1px solid var(--border);
             padding: var(--space-sm);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-card:hover {
@@ -274,6 +285,7 @@
             font-size: 0.9rem;
             color: var(--text-secondary);
             margin-bottom: 12px;
+            flex-grow: 1;
         }
 
         .project-meta {
@@ -281,6 +293,13 @@
             font-size: 0.8rem;
             display: flex;
             gap: 12px;
+            margin-top: auto;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
 
         /* Переключатели */
@@ -415,9 +434,18 @@
                    data-de="Python-Entwickler (Junior)">Python Developer (Junior)</p>
             </div>
             <div class="contact-list">
+                <!-- Группа 1: Основные контакты -->
                 <a href="mailto:vaznoe2024@mail.ru">vaznoe2024@mail.ru</a>
                 <a href="tel:+79055089412">8 905 508 94 12</a>
                 <a href="https://t.me/+79055089412">Telegram</a>
+                
+                <!-- Группа 2: Резюме -->
+                <a href="https://hh.ru/resume/e562f5b4ff0e97832f0039ed1f436942384770" 
+                   data-en="Resume on hh.ru" 
+                   data-ru="Резюме на hh.ru" 
+                   data-de="Lebenslauf auf hh.ru">Resume on hh.ru</a>
+                
+                <!-- Группа 3: Профили -->
                 <a href="https://github.com/USW5sPlusom">GitHub</a>
                 <a href="https://leetcode.com/USW5sPlusom">LeetCode</a>
             </div>
@@ -450,7 +478,7 @@
             <section>
                 <h2 data-en="Education" data-ru="Образование" data-de="Bildung">Education</h2>
                 <div class="timeline">
-                    <div class="timeline-date" data-en="2024" data-ru="2024" data-de="2024">2024</div>
+                    <div class="timeline-date" data-en="2025" data-ru="2025" data-de="2024">2025</div>
                     <div class="timeline-content">
                         <div class="timeline-title" data-en="Taking university entrance exams" data-ru="Прохожу вступительные экзамены в ВУЗ" data-de="Ablegen der Universitätsaufnahmeprüfungen">Taking university entrance exams</div>
                     </div>
@@ -477,16 +505,6 @@
                 <h2 data-en="Projects" data-ru="Проекты" data-de="Projekte">Projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <div class="project-title" data-en="Interactive Resume" data-ru="Интерактивное резюме" data-de="Interaktiver Lebenslauf">Interactive Resume</div>
-                        <div class="project-description" data-en="This responsive resume website with dark/light theme and multilingual support" data-ru="Адаптивный сайт-резюме с темной/светлой темой и мультиязычной поддержкой" data-de="Responsive Lebenslauf-Website mit Dunkel-/Hellmodus und Mehrsprachenunterstützung">This responsive resume website with dark/light theme and multilingual support</div>
-                        <div class="project-meta">
-                            <span>Python</span>
-                            <span>Django</span>
-                            <span>HTML/CSS/JS</span>
-                        </div>
-                        <a href="https://github.com/USW5sPlusom/resume-website" style="display: inline-block; margin-top: 8px; font-size: 0.9rem;">View on GitHub →</a>
-                    </div>
-                    <div class="project-card">
                         <div class="project-title" data-en="Compound Interest Calculator" data-ru="Калькулятор сложных процентов" data-de="Zinseszinsrechner">Compound Interest Calculator</div>
                         <div class="project-description" data-en="Web application for calculating compound interest with visualization" data-ru="Веб-приложение для расчета сложных процентов с визуализацией" data-de="Webanwendung zur Berechnung von Zinseszinsen mit Visualisierung">Web application for calculating compound interest with visualization</div>
                         <div class="project-meta">
@@ -494,7 +512,17 @@
                             <span>Flask</span>
                             <span>Matplotlib</span>
                         </div>
-                        <a href="https://github.com/USW5sPlusom/Deposit_Calculator" style="display: inline-block; margin-top: 8px; font-size: 0.9rem;">View on GitHub →</a>
+                        <a href="https://github.com/USW5sPlusom/Deposit_Calculator" class="project-link">View on GitHub →</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title" data-en="Interactive Portfolio" data-ru="Интерактивное портфолио" data-de="Interaktives Portfolio">Interactive Portfolio</div>
+                        <div class="project-description" data-en="You're currently viewing this project! This responsive portfolio website with dark/light theme and multilingual support" data-ru="Вы сейчас просматриваете этот проект! Адаптивное портфолио с темной/светлой темой и мультиязычной поддержкой" data-de="Sie sehen gerade dieses Projekt! Responsive Portfolio-Website mit Dunkel-/Hellmodus und Mehrsprachenunterstützung">You're currently viewing this project! This responsive portfolio website with dark/light theme and multilingual support</div>
+                        <div class="project-meta">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>HTML/CSS/JS</span>
+                        </div>
+                        <a href="https://github.com/USW5sPlusom/Portfolio" class="project-link">View on GitHub →</a>
                     </div>
                 </div>
             </section>
