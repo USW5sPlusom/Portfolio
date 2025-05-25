@@ -151,6 +151,12 @@
             text-align: right;
         }
 
+        .contact-list a:nth-child(3) {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
         a {
             color: var(--text);
             text-decoration: none;
@@ -233,6 +239,48 @@
 
         .skill-item:hover {
             padding-left: 8px;
+        }
+
+        /* Проекты */
+        .projects {
+            margin-top: var(--space-lg);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            padding: var(--space-sm);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateX(8px);
+            border-color: var(--text);
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .project-meta {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: flex;
+            gap: 12px;
         }
 
         /* Переключатели */
@@ -362,37 +410,54 @@
         <header>
             <div>
                 <h1 id="name" data-en="Alexey<br>Morgachev" data-ru="Алексей<br>Моргачев" data-de="Alexey<br>Morgachev">Alexey<br>Morgachev</h1>
-                <p data-en="Python Developer (Junior) focused on backend and data analysis" 
-                   data-ru="Python-разработчик (Junior) с фокусом на backend и аналитике данных" 
-                   data-de="Python-Entwickler (Junior) mit Schwerpunkt Backend und Datenanalyse">Python Developer (Junior) focused on backend and data analysis</p>
+                <p data-en="Python Developer (Junior)" 
+                   data-ru="Python-разработчик (Junior)" 
+                   data-de="Python-Entwickler (Junior)">Python Developer (Junior)</p>
             </div>
             <div class="contact-list">
-                <a href="mailto:your.email@example.com">email@example.com</a>
-                <a href="tel:+79161234567">+7 916 123 45 67</a>
+                <a href="mailto:vaznoe2024@mail.ru">vaznoe2024@mail.ru</a>
+                <a href="tel:+79055089412">8 905 508 94 12</a>
+                <a href="https://t.me/+79055089412">Telegram</a>
+                <a href="https://github.com/USW5sPlusom">GitHub</a>
+                <a href="https://leetcode.com/USW5sPlusom">LeetCode</a>
             </div>
         </header>
 
         <main>
+            <!-- 1. Обо мне (оригинальный порядок) -->
             <section>
                 <h2 data-en="About" data-ru="Обо мне" data-de="Über mich">About</h2>
-                <p data-en="Python developer (Junior) with focus on backend (Django/Flask) and data analysis (Pandas/NumPy). Looking for my first commercial position where I can apply my skills and grow actively." 
-                   data-ru="Python-разработчик (Junior) с фокусом на backend (Django/Flask) и аналитике данных (Pandas/NumPy). Ищу первую коммерческую позицию, где смогу применять свои навыки и активно развиваться." 
-                   data-de="Python-Entwickler (Junior) mit Schwerpunkt Backend (Django/Flask) und Datenanalyse (Pandas/NumPy). Suche meine erste kommerzielle Position, wo ich meine Fähigkeiten anwenden und aktiv wachsen kann.">Python developer (Junior) with focus on backend (Django/Flask) and data analysis (Pandas/NumPy). Looking for my first commercial position where I can apply my skills and grow actively.</p>
+                <p data-en="Python developer (Junior). Looking for my first commercial position where I can apply my skills and grow actively." 
+                   data-ru="Python-разработчик (Junior). Ищу первую коммерческую позицию, где смогу применять свои навыки и активно развиваться." 
+                   data-de="Python-Entwickler (Junior). Suche meine erste kommerzielle Position, wo ich meine Fähigkeiten anwenden und aktiv wachsen kann.">Python developer (Junior). Looking for my first commercial position where I can apply my skills and grow actively.</p>
             </section>
 
+            <!-- 2. Опыт -->
             <section>
                 <h2 data-en="Experience" data-ru="Опыт" data-de="Erfahrung">Experience</h2>
                 <div class="timeline">
-                    <div class="timeline-date" data-en="Currently learning" data-ru="В процессе обучения" data-de="Aktuell in Ausbildung">Currently learning</div>
+                    <div class="timeline-date">2023 - 2024</div>
                     <div class="timeline-content">
-                        <div class="timeline-title" data-en="Python Developer" data-ru="Python-разработчик" data-de="Python-Entwickler">Python Developer</div>
-                        <p data-en="Self-education through courses and pet projects" 
-                           data-ru="Самообразование через курсы и пет-проекты" 
-                           data-de="Selbststudium durch Kurse und eigene Projekte">Self-education through courses and pet projects</p>
+                        <div class="timeline-title" data-en="Python Teacher" data-ru="Преподаватель Python" data-de="Python-Lehrer">Python Teacher</div>
+                        <p data-en="Teaching Python basics to beginners at online school" 
+                           data-ru="Преподавание основ Python для начинающих в онлайн-школе" 
+                           data-de="Unterrichten von Python-Grundlagen für Anfänger an einer Online-Schule">Teaching Python basics to beginners at online school</p>
                     </div>
                 </div>
             </section>
 
+            <!-- 3. Образование -->
+            <section>
+                <h2 data-en="Education" data-ru="Образование" data-de="Bildung">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-date" data-en="2024" data-ru="2024" data-de="2024">2024</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title" data-en="Taking university entrance exams" data-ru="Прохожу вступительные экзамены в ВУЗ" data-de="Ablegen der Universitätsaufnahmeprüfungen">Taking university entrance exams</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. Навыки -->
             <section>
                 <h2 data-en="Skills" data-ru="Навыки" data-de="Fähigkeiten">Skills</h2>
                 <div class="skills-grid">
@@ -404,6 +469,33 @@
                     <div class="skill-item" data-en="Data Structures" data-ru="Структуры данных" data-de="Datenstrukturen">Data Structures</div>
                     <div class="skill-item" data-en="Pandas" data-ru="Pandas" data-de="Pandas">Pandas</div>
                     <div class="skill-item" data-en="Git" data-ru="Git" data-de="Git">Git</div>
+                </div>
+            </section>
+
+            <!-- 5. Проекты -->
+            <section class="projects">
+                <h2 data-en="Projects" data-ru="Проекты" data-de="Projekte">Projects</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <div class="project-title" data-en="Interactive Resume" data-ru="Интерактивное резюме" data-de="Interaktiver Lebenslauf">Interactive Resume</div>
+                        <div class="project-description" data-en="This responsive resume website with dark/light theme and multilingual support" data-ru="Адаптивный сайт-резюме с темной/светлой темой и мультиязычной поддержкой" data-de="Responsive Lebenslauf-Website mit Dunkel-/Hellmodus und Mehrsprachenunterstützung">This responsive resume website with dark/light theme and multilingual support</div>
+                        <div class="project-meta">
+                            <span>Python</span>
+                            <span>Django</span>
+                            <span>HTML/CSS/JS</span>
+                        </div>
+                        <a href="https://github.com/USW5sPlusom/resume-website" style="display: inline-block; margin-top: 8px; font-size: 0.9rem;">View on GitHub →</a>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-title" data-en="Compound Interest Calculator" data-ru="Калькулятор сложных процентов" data-de="Zinseszinsrechner">Compound Interest Calculator</div>
+                        <div class="project-description" data-en="Web application for calculating compound interest with visualization" data-ru="Веб-приложение для расчета сложных процентов с визуализацией" data-de="Webanwendung zur Berechnung von Zinseszinsen mit Visualisierung">Web application for calculating compound interest with visualization</div>
+                        <div class="project-meta">
+                            <span>Python</span>
+                            <span>Flask</span>
+                            <span>Matplotlib</span>
+                        </div>
+                        <a href="https://github.com/USW5sPlusom/Deposit_Calculator" style="display: inline-block; margin-top: 8px; font-size: 0.9rem;">View on GitHub →</a>
+                    </div>
                 </div>
             </section>
         </main>
@@ -475,7 +567,7 @@
         });
 
         // Анимация смещения при наведении для всех элементов
-        document.querySelectorAll('h1, h2, p, .timeline-date, .timeline-content, .timeline-title, a').forEach(el => {
+        document.querySelectorAll('h1, h2, p, .timeline-date, .timeline-content, .timeline-title, a, .project-card').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 el.style.transform = 'translateX(8px)';
             });
