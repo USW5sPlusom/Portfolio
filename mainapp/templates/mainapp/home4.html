@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume | Digital Designer</title>
+    <style>
+        :root {
+            --bg: #f9f5f0; /* льняной белый */
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #666;
+            --accent: #1a1a1a;
+            --border: rgba(0,0,0,0.08);
+            --shadow: 0 2px 12px rgba(0,0,0,0.06);
+            --space-sm: 16px;
+            --space-md: 32px;
+            --space-lg: 64px;
+            --radius: 0px;
+            --font-base: 'Neue Haas Grotesk', -apple-system, sans-serif;
+            --font-mono: 'Fragment Mono', monospace;
+        }
+
+        /* Тёмная тема */
+        [data-theme="dark"] {
+            --bg: #1a1a1a;
+            --surface: #252525;
+            --text: #f9f5f0;
+            --text-secondary: #999;
+            --accent: #f9f5f0;
+            --border: rgba(255,255,255,0.08);
+            --shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        @font-face {
+            font-family: 'Neue Haas Grotesk';
+            src: url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-base);
+            line-height: 1.4;
+            color: var(--text);
+            background-color: var(--bg);
+            padding: var(--space-lg) 0;
+            min-height: 100vh;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ::selection {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Сетка фона */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, var(--bg) 21px, transparent 1%) center,
+                linear-gradient(var(--bg) 21px, transparent 1%) center,
+                rgba(0,0,0,0.02);
+            background-size: 22px 22px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        [data-theme="dark"] body::before {
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        /* Типографика */
+        h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 500;
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-sm);
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 450;
+            margin-bottom: var(--space-md);
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        h2:hover {
+            transform: translateX(8px);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--text);
+            transition: width 0.3s ease;
+        }
+
+        p {
+            font-size: 1.125rem;
+            max-width: 65ch;
+            margin-bottom: var(--space-sm);
+            transition: transform 0.3s ease;
+        }
+
+        p:hover {
+            transform: translateX(8px);
+        }
+
+        /* Шапка */
+        header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            margin-bottom: var(--space-lg);
+            gap: var(--space-md);
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: right;
+        }
+
+        a {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        a:hover {
+            transform: translateX(8px);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--text);
+            transition: width 0.3s ease;
+        }
+
+        a:hover::after {
+            width: 100%;
+        }
+
+        /* Таймлайн */
+        .timeline {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-md);
+        }
+
+        .timeline-date {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding-top: 4px;
+            color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-date:hover {
+            transform: translateX(8px);
+        }
+
+        .timeline-content {
+            margin-bottom: var(--space-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(8px);
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-title:hover {
+            transform: translateX(8px);
+        }
+
+        /* Навыки */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--space-sm);
+            margin-top: var(--space-md);
+        }
+
+        .skill-item {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            padding-left: 8px;
+        }
+
+        /* Переключатель темы */
+        .theme-switcher {
+            position: fixed;
+            top: var(--space-md);
+            right: var(--space-md);
+            z-index: 100;
+        }
+
+        .theme-toggle {
+            appearance: none;
+            width: 40px;
+            height: 20px;
+            background: var(--text-secondary);
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: background 0.3s ease;
+        }
+
+        .theme-toggle::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .theme-toggle::after {
+            transform: translateX(20px);
+        }
+
+        /* Подсказка скролла */
+        .scroll-hint {
+            position: fixed;
+            bottom: var(--space-md);
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.6;
+        }
+
+        .scroll-hint::after {
+            content: '↓';
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Адаптив */
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-list {
+                text-align: left;
+            }
+            
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-date {
+                padding-top: 0;
+                margin-bottom: 4px;
+            }
+            
+            .theme-switcher {
+                top: var(--space-sm);
+                right: var(--space-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switcher">
+        <button class="theme-toggle" aria-label="Toggle theme"></button>
+    </div>
+
+    <div class="container">
+        <header>
+            <div>
+                <h1 id="name">Алексей<br>Моргачев</h1> 
+                <p>Digital designer with focus on typography and interaction</p>
+            </div>
+            <div class="contact-list">
+                <a href="mailto:hello@example.com">hello@example.com</a>
+                <a href="tel:+79161234567">+7 916 123 45 67</a>
+                <a href="https://behance.net" target="_blank">behance.net/elena</a>
+                <a href="https://instagram.com" target="_blank">@elena_sm</a>
+            </div>
+        </header>
+
+        <main>
+            <section>
+                <h2>About</h2>
+                <p>Creating digital experiences since 2016. Specializing in typography-driven interfaces and meaningful micro-interactions. Believer in functional aesthetics.</p>
+            </section>
+
+            <section>
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-date">2021—Now</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Lead Designer</div>
+                        <p>Studio Kuda · Digital products for cultural institutions</p>
+                    </div>
+                    
+                    <div class="timeline-date">2018—21</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">UI Designer</div>
+                        <p>Digital Dept. · E-commerce platforms</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Typography</div>
+                    <div class="skill-item">Figma</div>
+                    <div class="skill-item">Webflow</div>
+                    <div class="skill-item">HTML/CSS</div>
+                    <div class="skill-item">Design Systems</div>
+                    <div class="skill-item">Prototyping</div>
+                    <div class="skill-item">Art Direction</div>
+                    <div class="skill-item">3D</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="scroll-hint">Scroll</div>
+
+    <script>
+        // Переключение темы
+        const themeToggle = document.querySelector('.theme-toggle');
+        const html = document.documentElement;
+        
+        // Проверяем сохранённую тему
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        }
+        
+        // Переключаем тему
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Подсказка скролла
+        window.addEventListener('scroll', () => {
+            const scrollHint = document.querySelector('.scroll-hint');
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 100) {
+                scrollHint.style.opacity = 0;
+                scrollHint.style.pointerEvents = 'none';
+            } else {
+                scrollHint.style.opacity = 0.6 - (scrollY / 100 * 0.6);
+            }
+        });
+
+        // Улучшенная анимация текста при наведении
+        const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const nameElement = document.getElementById("name");
+        const originalName = nameElement.innerText;
+        let animationInterval;
+        
+        // Функция для сброса анимации
+        function resetAnimation() {
+            clearInterval(animationInterval);
+            nameElement.innerText = originalName;
+        }
+        
+        nameElement.addEventListener('mouseover', () => {
+            let iterations = 0;
+            const totalIterations = originalName.length * 2; // Увеличиваем количество итераций
+            
+            // Сбрасываем предыдущую анимацию
+            resetAnimation();
+            
+            animationInterval = setInterval(() => {
+                nameElement.innerText = originalName.split("")
+                    .map((letter, index) => {
+                        if(index < iterations / 2) {
+                            return originalName[index];
+                        }
+                        // Пропускаем пробелы и переносы строк
+                        if (letter === ' ' || letter === '\n') return letter;
+                        return letters[Math.floor(Math.random() * letters.length)];
+                    })
+                    .join("");
+                
+                if(iterations >= totalIterations) {
+                    clearInterval(animationInterval);
+                    // Возвращаем оригинальный текст после завершения
+                    setTimeout(() => {
+                        nameElement.innerText = originalName;
+                    }, 100);
+                }
+                iterations++;
+            }, 30);
+        });
+        
+        // Сбрасываем анимацию при уходе курсора
+        nameElement.addEventListener('mouseout', resetAnimation);
+        
+        // Добавляем анимацию смещения для всех элементов при наведении
+        document.querySelectorAll('h2, p, .timeline-date, .timeline-content, .timeline-title, a').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.transform = 'translateX(8px)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
