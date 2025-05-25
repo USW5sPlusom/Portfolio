@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,6 +93,11 @@
             line-height: 0.9;
             letter-spacing: -0.03em;
             margin-bottom: var(--space-sm);
+            transition: transform 0.3s ease;
+        }
+
+        h1:hover {
+            transform: translateX(8px);
         }
 
         h2 {
@@ -101,6 +106,11 @@
             margin-bottom: var(--space-md);
             position: relative;
             display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        h2:hover {
+            transform: translateX(8px);
         }
 
         h2::after {
@@ -111,12 +121,18 @@
             width: 100%;
             height: 1px;
             background: var(--text);
+            transition: width 0.3s ease;
         }
 
         p {
             font-size: 1.125rem;
             max-width: 65ch;
             margin-bottom: var(--space-sm);
+            transition: transform 0.3s ease;
+        }
+
+        p:hover {
+            transform: translateX(8px);
         }
 
         /* Шапка */
@@ -139,6 +155,11 @@
             color: var(--text);
             text-decoration: none;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        a:hover {
+            transform: translateX(8px);
         }
 
         a::after {
@@ -168,15 +189,30 @@
             font-size: 0.9rem;
             padding-top: 4px;
             color: var(--text-secondary);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-date:hover {
+            transform: translateX(8px);
         }
 
         .timeline-content {
             margin-bottom: var(--space-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(8px);
         }
 
         .timeline-title {
             font-size: 1.25rem;
             margin-bottom: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-title:hover {
+            transform: translateX(8px);
         }
 
         /* Навыки */
@@ -199,15 +235,18 @@
             padding-left: 8px;
         }
 
-        /* Переключатель темы */
-        .theme-switcher {
+        /* Переключатели */
+        .switchers {
             position: fixed;
             top: var(--space-md);
             right: var(--space-md);
             z-index: 100;
+            display: flex;
+            gap: var(--space-sm);
+            align-items: center;
         }
 
-        .theme-toggle {
+        .theme-toggle, .lang-toggle {
             appearance: none;
             width: 40px;
             height: 20px;
@@ -220,7 +259,11 @@
             transition: background 0.3s ease;
         }
 
-        .theme-toggle::after {
+        .lang-toggle {
+            width: 60px;
+        }
+
+        .theme-toggle::after, .lang-toggle::after {
             content: '';
             position: absolute;
             width: 16px;
@@ -232,8 +275,28 @@
             transition: transform 0.3s ease;
         }
 
+        .lang-toggle::after {
+            content: 'EN';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            font-family: var(--font-mono);
+            color: var(--text);
+        }
+
         [data-theme="dark"] .theme-toggle::after {
             transform: translateX(20px);
+        }
+
+        [data-lang="ru"] .lang-toggle::after {
+            content: 'RU';
+            transform: translateX(20px);
+        }
+
+        [data-lang="de"] .lang-toggle::after {
+            content: 'DE';
+            transform: translateX(40px);
         }
 
         /* Подсказка скролла */
@@ -281,23 +344,27 @@
                 margin-bottom: 4px;
             }
             
-            .theme-switcher {
+            .switchers {
                 top: var(--space-sm);
                 right: var(--space-sm);
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <div class="theme-switcher">
+    <div class="switchers">
+        <button class="lang-toggle" aria-label="Toggle language"></button>
         <button class="theme-toggle" aria-label="Toggle theme"></button>
     </div>
 
     <div class="container">
         <header>
             <div>
-                <h1>Елена<br>Смирнова</h1>
-                <p>Digital designer with focus on typography and interaction</p>
+                <h1 id="name" data-en="Elena<br>Smirnova" data-ru="Елена<br>Смирнова" data-de="Elena<br>Smirnova">Alexey<br>Morgachev</h1>
+                <p data-en="Digital designer with focus on typography and interaction" 
+                   data-ru="Дизайнер цифровых продуктов, специализация — типографика и интерактив" 
+                   data-de="Digital Designer mit Fokus auf Typografie und Interaktion">Digital designer with focus on typography and interaction</p>
             </div>
             <div class="contact-list">
                 <a href="mailto:hello@example.com">hello@example.com</a>
@@ -309,44 +376,50 @@
 
         <main>
             <section>
-                <h2>About</h2>
-                <p>Creating digital experiences since 2016. Specializing in typography-driven interfaces and meaningful micro-interactions. Believer in functional aesthetics.</p>
+                <h2 data-en="About" data-ru="Обо мне" data-de="Über mich">About</h2>
+                <p data-en="Creating digital experiences since 2016. Specializing in typography-driven interfaces and meaningful micro-interactions. Believer in functional aesthetics." 
+                   data-ru="Создаю цифровые продукты с 2016 года. Специализация — интерфейсы с акцентом на типографику и осмысленные микро-взаимодействия. Приверженец функциональной эстетики." 
+                   data-de="Erschaffe digitale Erlebnisse seit 2016. Spezialisiert auf typografiegetriebene Schnittstellen und sinnvolle Mikrointeraktionen. Verfechter funktionaler Ästhetik.">Creating digital experiences since 2016. Specializing in typography-driven interfaces and meaningful micro-interactions. Believer in functional aesthetics.</p>
             </section>
 
             <section>
-                <h2>Experience</h2>
+                <h2 data-en="Experience" data-ru="Опыт" data-de="Erfahrung">Experience</h2>
                 <div class="timeline">
-                    <div class="timeline-date">2021—Now</div>
+                    <div class="timeline-date" data-en="2021—Now" data-ru="2021—Н.в." data-de="2021—Heute">2021—Now</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">Lead Designer</div>
-                        <p>Studio Kuda · Digital products for cultural institutions</p>
+                        <div class="timeline-title" data-en="Lead Designer" data-ru="Ведущий дизайнер" data-de="Leitender Designer">Lead Designer</div>
+                        <p data-en="Studio Kuda · Digital products for cultural institutions" 
+                           data-ru="Студия Куда · Цифровые продукты для культурных институций" 
+                           data-de="Studio Kuda · Digitale Produkte für Kultureinrichtungen">Studio Kuda · Digital products for cultural institutions</p>
                     </div>
                     
-                    <div class="timeline-date">2018—21</div>
+                    <div class="timeline-date" data-en="2018—21" data-ru="2018—21" data-de="2018—21">2018—21</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">UI Designer</div>
-                        <p>Digital Dept. · E-commerce platforms</p>
+                        <div class="timeline-title" data-en="UI Designer" data-ru="UI-дизайнер" data-de="UI Designer">UI Designer</div>
+                        <p data-en="Digital Dept. · E-commerce platforms" 
+                           data-ru="Digital Dept. · E-commerce платформы" 
+                           data-de="Digital Dept. · E-Commerce-Plattformen">Digital Dept. · E-commerce platforms</p>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h2>Skills</h2>
+                <h2 data-en="Skills" data-ru="Навыки" data-de="Fähigkeiten">Skills</h2>
                 <div class="skills-grid">
-                    <div class="skill-item">Typography</div>
-                    <div class="skill-item">Figma</div>
-                    <div class="skill-item">Webflow</div>
-                    <div class="skill-item">HTML/CSS</div>
-                    <div class="skill-item">Design Systems</div>
-                    <div class="skill-item">Prototyping</div>
-                    <div class="skill-item">Art Direction</div>
-                    <div class="skill-item">3D</div>
+                    <div class="skill-item" data-en="Typography" data-ru="Типографика" data-de="Typografie">Typography</div>
+                    <div class="skill-item" data-en="Figma" data-ru="Figma" data-de="Figma">Figma</div>
+                    <div class="skill-item" data-en="Webflow" data-ru="Webflow" data-de="Webflow">Webflow</div>
+                    <div class="skill-item" data-en="HTML/CSS" data-ru="HTML/CSS" data-de="HTML/CSS">HTML/CSS</div>
+                    <div class="skill-item" data-en="Design Systems" data-ru="Дизайн-системы" data-de="Designsysteme">Design Systems</div>
+                    <div class="skill-item" data-en="Prototyping" data-ru="Прототипирование" data-de="Prototyping">Prototyping</div>
+                    <div class="skill-item" data-en="Art Direction" data-ru="Арт-дирекшн" data-de="Art Direction">Art Direction</div>
+                    <div class="skill-item" data-en="3D" data-ru="3D" data-de="3D">3D</div>
                 </div>
             </section>
         </main>
     </div>
 
-    <div class="scroll-hint">Scroll</div>
+    <div class="scroll-hint" data-en="Scroll" data-ru="Прокрутите" data-de="Scrollen">Scroll</div>
 
     <script>
         // Переключение темы
@@ -380,28 +453,78 @@
             }
         });
 
-        // Анимация текста при наведении
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        const h1 = document.querySelector("h1");
-        
-        h1.addEventListener('mouseover', () => {
+        // Анимация имени при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            const letters = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß";
+            const nameElement = document.getElementById("name");
+            const originalName = nameElement.innerText;
+            let animationInterval;
             let iterations = 0;
-            const originalText = h1.innerText;
+            const totalIterations = originalName.length * 3;
             
-            const interval = setInterval(() => {
-                h1.innerText = originalText.split("")
-                    .map((letter, index) => {
-                        if(index < iterations) {
-                            return originalText[index];
-                        }
-                        return letters[Math.floor(Math.random() * 26)];
-                    })
-                    .join("");
-                
-                if(iterations >= originalText.length) clearInterval(interval);
-                iterations += 1 / 2;
-            }, 30);
+            // Запускаем анимацию после небольшой задержки
+            setTimeout(() => {
+                animationInterval = setInterval(() => {
+                    nameElement.innerText = originalName.split("")
+                        .map((letter, index) => {
+                            if(index < iterations / 3) {
+                                return originalName[index];
+                            }
+                            if (letter === ' ' || letter === '\n') return letter;
+                            return letters[Math.floor(Math.random() * letters.length)];
+                        })
+                        .join("");
+                    
+                    if(iterations >= totalIterations) {
+                        clearInterval(animationInterval);
+                        nameElement.innerText = originalName;
+                    }
+                    iterations++;
+                }, 30);
+            }, 500);
         });
+
+        // Анимация смещения при наведении для всех элементов
+        document.querySelectorAll('h1, h2, p, .timeline-date, .timeline-content, .timeline-title, a').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                el.style.transform = 'translateX(8px)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Локализация
+        const langToggle = document.querySelector('.lang-toggle');
+        const savedLang = localStorage.getItem('lang') || 'en';
+        html.setAttribute('data-lang', savedLang);
+        updateLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = html.getAttribute('data-lang');
+            let newLang;
+            
+            if (currentLang === 'en') newLang = 'ru';
+            else if (currentLang === 'ru') newLang = 'de';
+            else newLang = 'en';
+            
+            html.setAttribute('data-lang', newLang);
+            localStorage.setItem('lang', newLang);
+            updateLanguage(newLang);
+        });
+
+        function updateLanguage(lang) {
+            document.querySelectorAll('[data-en], [data-ru], [data-de]').forEach(el => {
+                if (el.dataset[lang]) {
+                    if (el.tagName === 'H1') {
+                        el.innerHTML = el.dataset[lang];
+                    } else {
+                        el.textContent = el.dataset[lang];
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
