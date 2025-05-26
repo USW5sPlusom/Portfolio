@@ -56,7 +56,7 @@ ROOT_URLCONF = 'third.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'mainapp/templates'],
+        'DIRS': [BASE_DIR / 'third/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
